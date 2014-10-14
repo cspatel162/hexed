@@ -1,3 +1,6 @@
 $.fn.hexedmc = function(settings) {
-	this.do
+	style(this);
+
 };
+
+//saveScore()
