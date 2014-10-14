@@ -21,20 +21,6 @@ $.fn.hexed = function() {	// Begin defining main body of game
 	var diff = 5;
 
 	initPlugin(this, runPlugin);
-	/* //Vert Slider Function
-	    $( "#slider-vertical" ).slider({
-      orientation: "vertical",
-      range: "min",
-      min: 0,
-      max: 100,
-      value: 60,
-      slide: function( event, ui ) {
-        $( "#amount" ).val( ui.value );
-      }
-    });
-    $( "#amount" ).val( $( "#slider-vertical" ).slider( "value" ) );
- 	*/
-
 }
 
 
@@ -43,10 +29,37 @@ function initPlugin(this, callback) {
 	gameHTML =  "<section id='hexxed_plugin'>";
 	gameHTML += "<h1 id='hexxed_title'>" + title + "</h1>";
 	gameHTML += "<p id='hexxed_message'>" + message + "</p>";
-	gameHTML += "<div id=";
-	gameHTML += "<label for='diff'>Difficulty: </label>";
-	gameHTML += "<input type=";
+	//gameHTML += "<div id=";
+	//gameHTML += "<label for='diff'>Difficulty: </label>";
+	//gameHTML += "<input type=";
 	gameHTML += "</section>";
 	this.innerHTML = gameHTML;
+
+	//Vert Slider Function
+	$( "#hexxed_slider1" ).slider({
+      orientation: "vertical",
+      range: "min",
+      min: 0,
+      max: 255,
+      value: 60,
+      slide: function( event, ui ) {
+        $( "#amount1" ).val( ui.value );
+      }
+    });
+    $( "#amount1" ).val( $( "#hexxed_slider1" ).slider( "value" ) );
+
+   	$( "#hexxed_slider2" ).slider({
+      orientation: "vertical",
+      range: "min",
+      min: 0,
+      max: 255,
+      value: 60,
+      slide: function( event, ui ) {
+        $( "#amount2" ).val( ui.value );
+      }
+    });
+    $( "#amount2" ).val( $( "#hexxed_slider2" ).slider( "value" ) );
+
+
 }
 
