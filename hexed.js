@@ -19,8 +19,10 @@ function percentError(real, player){// Takes in
 $.fn.hexed = function() {	// Begin defining main body of game
 	var n_tries = 10;
 	var diff = 5;
-
-	/* //Vert Slider Function
+	rand = getColors();
+	$('#hexxed_mystery').css('background-color:rgb('+rand[0]+','+rand[1]+','+rand[2]+')');
+	
+		/* //Vert Slider Function
 	    $( "#slider-vertical" ).slider({
       orientation: "vertical",
       range: "min",
