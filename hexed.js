@@ -1,10 +1,4 @@
-function getSettings(item){	// Temporarily inject html for user to input settings
-	item.html('<div id="init_settings">Enter initial settings here</div>');
-	$('init_settings').html();
-}
-
-
-
-$.fn.hexed = function() {	// Begin defining main body of game
-	
+$.fn.hexed = function(tries, difficulty) {	// Begin defining main body of game
+	var n_tries = $.extend({10}, tries);
+	var diff = $.extend({5}, difficulty);
 }
