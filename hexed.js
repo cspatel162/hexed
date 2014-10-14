@@ -1,4 +1,4 @@
-$.fn.hexed = function(tries, difficulty) {	// Begin defining main body of game
-	var n_tries = $.extend({10}, tries);
-	var diff = $.extend({5}, difficulty);
+$.fn.hexed = function() {	// Begin defining main body of game
+	var n_tries = 10;
+	var diff = 5;
 }
