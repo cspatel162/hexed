@@ -28,12 +28,29 @@ h2 {
 	margin-left: 20px;
 }
 
-#red .ui-slider-range { background: #ef2929; }
-#red .ui-slider-handle { border-color: #ef2929; }
-#green .ui-slider-range { background: #8ae234; }
-#green .ui-slider-handle { border-color: #8ae234; }
-#blue .ui-slider-range { background: #729fcf; }
-#blue .ui-slider-handle { border-color: #729fcf; }
+#red .ui-slider-range {
+	background: #ef2929;
+}
+
+#red .ui-slider-handle { 
+	border-color: #ef2929;
+}
+
+#green .ui-slider-range { 
+	background: #8ae234;
+}
+
+#green .ui-slider-handle { 
+	border-color: #8ae234;
+}
+
+#blue .ui-slider-range { 
+	background: #729fcf;
+}
+
+#blue .ui-slider-handle { 
+	border-color: #729fcf;
+}
 
 #circles {
 	margin: 15px;
@@ -50,6 +67,15 @@ h2 {
 
 #scors {
 	display: none;
+}
+
+#triesCounter {
+	margin-bottom: 10px;
+}
+
+#allScores {
+	margin-top: 20px;
+	margin-left: 20px;
 }
 
 input[type=button] {

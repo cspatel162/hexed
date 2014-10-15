@@ -83,9 +83,13 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
     // add scores section using the CSS to hide this on first load
     var scores = $("<section />").attr("id", "scores").appendTo(item);
     $('<p />').attr("id", "triesCounter").appendTo(scores);
+    $('<p />').attr("id", "averageScore").appendTo(scores);
     $('<p />').attr("id", "redScore").appendTo(scores);
     $('<p />').attr("id", "greenScore").appendTo(scores);
     $('<p />').attr("id", "blueScore").appendTo(scores);
+
+    // list of all scores previously achieved
+    $('<ol />').attr("id", "allScores").appendTo(scores);
 
     assignColors();
   };
@@ -121,15 +125,26 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
     $("#checking").on("click", function() {
       var real = getUserColors();
       var percentages = [3];
+      var average = 0;
       for (i = 0; i < 3; i++){
         percentages[i] = (Math.abs(real[i]-randomColors[i])/255)*100;
+        average += percentages[i];
       }
+      average = average/3;
       
       tries += 1;
+
+      // update score labels
       $("#triesCounter").text("Number of tries: " + tries);
+      $("#averageScore").text("Average error: " + average);
       $("#redScore").text("Red error: " + percentages[0]);
       $("#greenScore").text("Green error: " + percentages[1]);
       $("#blueScore").text("Blue error: " + percentages[2]);
+
+      // add score to list of past scores
+      $("<li>" + average + "</li>" ).appendTo("#allScores");
+
+      // set the scores section to visible
       $("#scores").show();
 
       if (tries == settings.tries) {
