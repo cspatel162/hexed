@@ -112,6 +112,7 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
     assignColors();
     $("#scores").hide();
     tries = 0;
+    $("#allScores").empty();
 
     $("#red").slider("value", 127);
     $("#green").slider("value", 127);
