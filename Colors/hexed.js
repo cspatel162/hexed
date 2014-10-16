@@ -1,6 +1,8 @@
 $.fn.hexed = function(options) {	// Begin defining main body of game
   var randomColors = null;
   var tries = 0;
+  var startTime = null;
+  var endTime = null;
 
   // default settings for how the game works
   var defaultSettings = {
@@ -92,6 +94,9 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
     $('<ol />').attr("id", "allScores").appendTo(scores);
 
     assignColors();
+
+    // assign startTime;
+    startTime = new Date();
   };
 
   // color the circles based on the settings and randomColors generated from before
@@ -119,11 +124,12 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
     $("#blue").slider("value", 127);
   }
 
-  initHTML(this);
-
   // jQuery call when the check colors button is clicked
   $(document).ready(function() {
     $("#checking").on("click", function() {
+      endTime = new Date();
+
+      // determine the error percentages for each color
       var real = getUserColors();
       var percentages = [3];
       var average = 0;
@@ -132,6 +138,10 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
         average += percentages[i];
       }
       average = average/3;
+
+      // calculate the number of milliseconds between each clicking of the button
+      var milliseconds = (endTime.getTime() - startTime.getTime())/1000;
+      var scoringFormula = ((15 - settings.difficult - average)/(15-settings.difficult))*(15000-milliseconds);
       
       tries += 1;
 
@@ -143,14 +153,20 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
       $("#blueScore").text("Blue error: " + percentages[2]);
 
       // add score to list of past scores
-      $("<li>" + average + "</li>" ).appendTo("#allScores");
+      $("<li>" + scoringFormula + "</li>" ).appendTo("#allScores");
 
       // set the scores section to visible
       $("#scores").show();
+
+      // set start time as the end time so we can calculate the milliseconds again
+      startTime = endTime;
 
       if (tries == settings.tries) {
         resetGame();
       }
     });
   });
+
+  // function to call to build plugin HTML
+  initHTML(this);
 }
