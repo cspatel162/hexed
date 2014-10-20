@@ -1,0 +1,57 @@
+<html>
+<head>
+	<title>Hexxed Game</title>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+	<link rel=stylesheet href="main.css"/>
+</head>
+<body>
+	<div class="hexed">
+		<h2>Hexxed Game</h2>
+		<label>Number of tries</label>
+		<select id="tries">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10" selected>10</option>
+		</select>
+		<label>Difficulty</label>
+		<select id="difficult">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5" selected>5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+		</select>
+		<section id="game">
+		</section>
+	</div>
+</body>
+
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+<script src="hexed.js"></script>
+<script type="text/javascript">
+	$("#tries").change(function() {
+		var val = $(this).val();
+		$("#game").hexed({"tries": val});
+	});
+
+	$("#difficult").change(function() {
+		var val = $(this).val();
+		$("#game").hexed({"difficult": val});
+	});
+
+	$("#game").hexed();
+</script>
+</html>
