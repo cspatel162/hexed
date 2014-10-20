@@ -80,6 +80,9 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
     var blue = $( "<div />").attr("id", "blue").appendTo(item).slider(sliderSettings);
     var blueLabel = $("<input readonly />").attr({"id": 'blueValue', "value": defaultSettings.sliderValue}).appendTo(item);
 
+    // add link to saved scores page
+    var link = $('<a target="_blank" href="scores.html">View Saved Scores</a>').appendTo(item);
+
     // add check colors button
     var button = $('<input type="button" />').attr({"id": "checking", "value": "Check Colors"}).appendTo(item);
 
