@@ -3,6 +3,7 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
   var tries = 0;
   var startTime = null;
   var endTime = null;
+  var jsonData = [];
 
   // default settings for how the game works
   var defaultSettings = {
@@ -107,12 +108,24 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
   }
 
   // game over so let's notify the user and reset the values
-  function resetGame() {
+  function resetGame(finalScore, timeStamp) {
     var colors = getUserColors();
     var red = "Your red color: " + colors[0] + "  Correct Color: " + randomColors[0];
     var green = "Your green color: " + colors[1] + "  Correct Color: " + randomColors[1];
     var blue = "Your blue color: " + colors[2] + "  Correct Color: " + randomColors[2];
     alert("GAME OVER\n" + red + "\n" + green + "\n" + blue);
+
+    // add to JSON Data
+    var name = prompt("Enter Your Name to Save Your High Score");
+    item = {}
+    item.name = name;
+    item.difficult = settings.difficult;
+    item.turns = tries;
+    item.score = finalScore;
+    item.timeStamp = timeStamp;
+
+    jsonData.push(item);
+    saveJSON();
 
     assignColors();
     $("#scores").hide();
@@ -123,6 +136,27 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
     $("#green").slider("value", 127);
     $("#blue").slider("value", 127);
   }
+
+  // load the JSON from local storage if it exist
+  function loadJSON() {
+    if(localStorage.hexed) {
+      return JSON.parse(localStorage.hexed);
+    } else {
+      return [];
+    }
+  }
+
+  // save the JSON to local storage
+  function saveJSON() {
+    var data = JSON.stringify(jsonData);
+    localStorage.hexed = data;
+  }
+
+  // function to call to build plugin HTML
+  initHTML(this);
+
+  // load JSON from local storage
+  jsonData = loadJSON();
 
   // jQuery call when the check colors button is clicked
   $(document).ready(function() {
@@ -142,6 +176,9 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
       // calculate the number of milliseconds between each clicking of the button
       var milliseconds = (endTime.getTime() - startTime.getTime())/1000;
       var scoringFormula = ((15 - settings.difficult - average)/(15-settings.difficult))*(15000-milliseconds);
+      if(scoringFormula < 0) {
+        scoringFormula = 0;
+      }
       
       tries += 1;
 
@@ -161,12 +198,9 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
       // set start time as the end time so we can calculate the milliseconds again
       startTime = endTime;
 
-      if (tries == settings.tries) {
-        resetGame();
+      if (tries == settings.tries || (percentages[0] == 0 && percentages[1] == 0 && percentages[2] == 0)) {
+        resetGame(scoringFormula, endTime);
       }
     });
   });
-
-  // function to call to build plugin HTML
-  initHTML(this);
 }
