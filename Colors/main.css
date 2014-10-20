@@ -1,9 +1,12 @@
+@import url(http://fonts.googleapis.com/css?family=Press+Start+2P|Gruppo);
+
 * {
 	margin: 0px;
 	padding: 0px;
 }
 
 .hexed {
+	font-family: 'Gruppo', cursive;
 	width: 900px;
 	height: 700px;
 	border: 2px solid #999;
@@ -13,19 +16,29 @@
 }
 
 h2 {
-	margin: 0px auto;
+	font-family: 'Press Start 2P', cursive;
+	text-align: center;
+	font-size: 40px;
+	margin: 20 0 20 0;
+}
+
+#choices {
+	text-align: center;
 }
 
 #red, #green, #blue {
 	display: inline-block;
+	margin-left: 150px;
 	margin-bottom: 20px;
-	width: 50%;
+	width: 470px;
 }
 
 #redValue, #greenValue, #blueValue {
 	position: relative;
 	top: -24px;
 	margin-left: 20px;
+	margin-right: 150px;
+	width: 100px;
 }
 
 #red .ui-slider-range {
@@ -53,7 +66,7 @@ h2 {
 }
 
 #circles {
-	margin: 15px;
+	margin: 15px auto 15px 330px;
 }
 
 .circle {
