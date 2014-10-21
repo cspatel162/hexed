@@ -93,6 +93,7 @@ h2 {
 
 input[type=button], a {
 	display: block;
+	margin-bottom: 5px;
 }
 
 #scoreData td, #scoreData th {
