@@ -22,6 +22,7 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
     change: refreshlabel,
   };
 
+  // combine default settings with the options argument
   var settings = $.extend( {}, defaultSettings, options );
 
   // generates random RGB values and returns them in an array
@@ -118,7 +119,7 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
     var blue = "Your blue color: " + colors[2] + "  Correct Color: " + randomColors[2];
     alert("GAME OVER\n" + red + "\n" + green + "\n" + blue);
 
-    // add to JSON Data
+    // get data needed for the JSON
     var name = prompt("Enter Your Name to Save Your High Score");
     item = {}
     item.name = name;
@@ -127,9 +128,11 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
     item.score = finalScore;
     item.timeStamp = timeStamp;
 
+    // add the new json to our jsonData
     jsonData.push(item);
     saveJSON();
 
+    // reset variables for a new game
     assignColors();
     $("#scores").hide();
     tries = 0;
@@ -143,9 +146,9 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
   // load the JSON from local storage if it exist
   function loadJSON() {
     if(localStorage.hexed) {
-      return JSON.parse(localStorage.hexed);
+      jsonData = JSON.parse(localStorage.hexed);
     } else {
-      return [];
+      jsonData = [];
     }
   }
 
@@ -155,11 +158,13 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
     localStorage.hexed = data;
   }
 
+  // ************** MAIN *****************
   // function to call to build plugin HTML
+  // and initialize the game
   initHTML(this);
 
   // load JSON from local storage
-  jsonData = loadJSON();
+  loadJSON();
 
   // jQuery call when the check colors button is clicked
   $(document).ready(function() {
