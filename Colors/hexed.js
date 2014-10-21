@@ -87,6 +87,9 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
     // add check colors button
     var button = $('<input type="button" />').attr({"id": "checking", "value": "Check Colors"}).appendTo(item);
 
+    // add next color button
+    var next_button = $('<input type="button" />').attr({"id":"next", "value": "Next Color"}).appendTo(item);
+
     // add scores section using the CSS to hide this on first load
     var scores = $("<section />").attr("id", "scores").appendTo(item);
     $('<p />').attr("id", "triesCounter").appendTo(scores);
@@ -112,26 +115,27 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
   }
 
   // game over so let's notify the user and reset the values
-  function resetGame(finalScore, timeStamp) {
-    var colors = getUserColors();
-    var red = "Your red color: " + colors[0] + "  Correct Color: " + randomColors[0];
-    var green = "Your green color: " + colors[1] + "  Correct Color: " + randomColors[1];
-    var blue = "Your blue color: " + colors[2] + "  Correct Color: " + randomColors[2];
-    alert("GAME OVER\n" + red + "\n" + green + "\n" + blue);
+  function resetGame(finalScore, timeStamp, full_reset) {
+    if (full_reset){
+      var colors = getUserColors();
+      var red = "Your red color: " + colors[0] + "  Correct Color: " + randomColors[0];
+      var green = "Your green color: " + colors[1] + "  Correct Color: " + randomColors[1];
+      var blue = "Your blue color: " + colors[2] + "  Correct Color: " + randomColors[2];
+      alert("GAME OVER\n" + red + "\n" + green + "\n" + blue);
 
-    // get data needed for the JSON
-    var name = prompt("Enter Your Name to Save Your High Score");
-    item = {}
-    item.name = name;
-    item.difficult = settings.difficult;
-    item.turns = tries;
-    item.score = finalScore;
-    item.timeStamp = timeStamp;
+      // get data needed for the JSON
+      var name = prompt("Enter Your Name to Save Your High Score");
+      item = {}
+      item.name = name;
+      item.difficult = settings.difficult;
+      item.turns = tries;
+      item.score = finalScore;
+      item.timeStamp = timeStamp;
 
-    // add the new json to our jsonData
-    jsonData.push(item);
-    saveJSON();
-
+      // add the new json to our jsonData
+      jsonData.push(item);
+      saveJSON();
+    }
     // reset variables for a new game
     assignColors();
     $("#scores").hide();
@@ -166,7 +170,7 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
   // load JSON from local storage
   loadJSON();
 
-  // jQuery call when the check colors button is clicked
+  // jQuery call when the check colors button or the next color button is clicked
   $(document).ready(function() {
     $("#checking").on("click", function() {
       endTime = new Date();
@@ -207,8 +211,11 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
       startTime = endTime;
 
       if (tries == settings.tries || (percentages[0] == 0 && percentages[1] == 0 && percentages[2] == 0)) {
-        resetGame(scoringFormula, endTime);
+        resetGame(scoringFormula, endTime, true);
       }
     });
+    $('#next').on('click',function() {
+      resetGame(0,0,false);
+    }); 
   });
 }
