@@ -28,7 +28,7 @@ $(document).ready(function() {
       htmlData += "<td>" + entry.name + "</td>";
       htmlData += "<td>" + entry.difficult + "</td>";
       htmlData += "<td>" + entry.turns + "</td>";
-      htmlData += "<td>" + entry.score + "</td>";
+      htmlData += "<td>" + entry.score.toFixed(2) + "</td>";
       htmlData += "<td>" + entry.timeStamp + "</td>";
       htmlData += "</tr>";
     });
