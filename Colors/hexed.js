@@ -195,14 +195,14 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
       tries += 1;
 
       // update score labels
-      $("#triesCounter").text("Number of tries: " + tries);
-      $("#averageScore").text("Average error: " + average);
-      $("#redScore").text("Red error: " + percentages[0]);
-      $("#greenScore").text("Green error: " + percentages[1]);
-      $("#blueScore").text("Blue error: " + percentages[2]);
+      $("#triesCounter").text("Number of tries: \t" + tries.toFixed(2));
+      $("#averageScore").text("Average error: \t" + average.toFixed(2));
+      $("#redScore").text("Red error: \t" + percentages[0].toFixed(2));
+      $("#greenScore").text("Green error: \t" + percentages[1].toFixed(2));
+      $("#blueScore").text("Blue error: \t" + percentages[2].toFixed(2));
 
       // add score to list of past scores
-      $("<li>" + scoringFormula + "</li>" ).appendTo("#allScores");
+      $("<li>" + scoringFormula.toFixed(2) + "</li>" ).appendTo("#allScores");
 
       // set the scores section to visible
       $("#scores").show();
