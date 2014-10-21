@@ -82,7 +82,7 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
     var blueLabel = $("<input readonly />").attr({"id": 'blueValue', "value": defaultSettings.sliderValue}).appendTo(item);
 
     // add link to saved scores page
-    var link = $('<a target="_blank" href="scores.html">View Saved Scores</a>').appendTo(item);
+    var link = $('<a target="_blank" href="5-a2_scores.html">View Saved Scores</a>').appendTo(item);
 
     // add check colors button
     var button = $('<input type="button" />').attr({"id": "checking", "value": "Check Colors"}).appendTo(item);
@@ -198,7 +198,7 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
       tries += 1;
 
       // update score labels
-      $("#triesCounter").text("Number of tries: " + tries.toFixed(2));
+      $("#triesCounter").text("Number of tries: " + tries);
       $("#averageScore").text("Average error: " + average.toFixed(2));
       $("#redScore").text("Red error: " + percentages[0].toFixed(2));
       $("#greenScore").text("Green error: " + percentages[1].toFixed(2));
