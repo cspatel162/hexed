@@ -1,5 +1,5 @@
 ; (function() {
 	window.onload = function() {
-		$("body").hexxed();
+		$("body").hexed();
 	}
 }) ();

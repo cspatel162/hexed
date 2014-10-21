@@ -67,7 +67,7 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
     // clear inner HTMl
     $(item).empty();
 
-    // add circles to the 
+    // add circles to the item
     var circles = $("<section />").attr("id", "circles").appendTo(item);
     $("<div />").attr("id", "randomCircle").addClass("circle").appendTo(circles);
     $("<div />").attr("id", "userCircle").addClass("circle").appendTo(circles);
