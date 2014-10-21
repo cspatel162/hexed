@@ -125,6 +125,9 @@ $.fn.hexed = function(options) {	// Begin defining main body of game
 
       // get data needed for the JSON
       var name = prompt("Enter Your Name to Save Your High Score");
+      if (name === "") {
+        name = "None"
+      }
       item = {}
       item.name = name;
       item.difficult = settings.difficult;
